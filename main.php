@@ -13,11 +13,15 @@ if (!$zbp->CheckPlugin('AutoChainLink')) {
     $zbp->ShowError(48);
     die();
 }
+$title = '自动上链配置';
+require $blogpath . 'zb_system/admin/admin_header.php';
+require $blogpath . 'zb_system/admin/admin_top.php';
 ?>
 <link rel="stylesheet" href="js/layui/css/layui.css">
 <script src="js/layui/layui.js"></script>
 <script src="js/lay-config.js?v=2.0.0" charset="utf-8"></script>
-<div class="layuimini-container layuimini-page-anim layui-col-xs12">
+<div class="divHeader"><?php echo $title; ?></div>
+<div class="layuimini-container layuimini-page-anim layui-col-xs12 tableBorder">
 	<div class="layui-tab layui-tab-brief" lay-filter="switch">
 		<ul class="layui-tab-title">
 			<li class="layui-this">站长资源平台</li>
@@ -173,3 +177,7 @@ if (!$zbp->CheckPlugin('AutoChainLink')) {
 
     });
 </script>
+<?php
+require $blogpath . 'zb_system/admin/admin_footer.php';
+RunTime();
+?>
