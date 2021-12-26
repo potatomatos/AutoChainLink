@@ -2,6 +2,7 @@
 require '../../../zb_system/function/c_system_base.php';
 require '../../../zb_system/function/c_system_admin.php';
 require_once 'action.php';
+require_once 'include.php';
 $zbp->Load();
 
 //处理ajax请求
@@ -130,7 +131,7 @@ require $blogpath . 'zb_system/admin/admin_top.php';
         //2898配置提交
         form.on('submit(save_2898)', function (data) {
             layer.load(2);
-            request.post("main.php?act=save&type=2898", {
+            request.post("<?php echo BuildSafeURL("main.php?act=save&type=2898"); ?>", {
                 data: JSON.stringify(data.field)
             }, function (res) {
                 layer.closeAll('loading');
@@ -146,7 +147,7 @@ require $blogpath . 'zb_system/admin/admin_top.php';
         //系统配置提交
         form.on('submit(save_setting)', function (data) {
             layer.load(2);
-            request.post("main.php?act=save_setting", {
+            request.post("<?php echo BuildSafeURL("main.php?act=save_setting"); ?>", {
                 data: JSON.stringify(data.field)
             }, function (res) {
                 layer.closeAll('loading');

@@ -5,7 +5,7 @@ function ajaxService()
     $act = GetVars('act', 'GET');
     if (isset($act)) {
         header('Content-Type:application/json');
-        checkPermission();
+//        checkPermission();
         $functionName = "action_" . $act;
         if (function_exists($functionName)) {
             $functionName();
@@ -96,4 +96,8 @@ function action_get_data()
         $response['data'] = $zbp->Config('AutoChainLink');
     }
     echo json_encode($response, JSON_UNESCAPED_UNICODE);
+}
+
+function action_test(){
+    echo getModContent();
 }
