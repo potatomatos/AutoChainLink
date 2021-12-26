@@ -26,10 +26,10 @@ function InstallPlugin_AutoChainLink()
 function createMod()
 {
     global $zbp;
-    if (!isset($zbp->modulesbyfilename['friendLink'])) {
+    if (!isset($zbp->modulesbyfilename['AutoChainLink'])) {
         $mod = new Module();
         $mod->Name = "自动上链友情链接";
-        $mod->FileName = "friendLink";
+        $mod->FileName = "AutoChainLink";
         $mod->Source = "plugin_AutoChainLink";
         $mod->HtmlID = $mod->FileName;
         $mod->Type = "ul";
@@ -55,16 +55,16 @@ function buildMod()
             $cachedTime = $config->$setting['cachedTime'];
             //判断是否超过了缓存时间
             if ((time() -  $zbp->Config('AutoChainLink')->updateTime) > $cachedTime) {
-                if (isset($zbp->modulesbyfilename['friendLink'])) {
-                    $mod = $zbp->modulesbyfilename("friendLink");
+                if (isset($zbp->modulesbyfilename['AutoChainLink'])) {
+                    $mod = $zbp->modulesbyfilename("AutoChainLink");
                     $mod->Content = getModContent();
                     $mod->Save();
                 }
             }
 
         } else {
-            if (isset($zbp->modulesbyfilename['friendLink'])) {
-                $mod = $zbp->modulesbyfilename("friendLink");
+            if (isset($zbp->modulesbyfilename['AutoChainLink'])) {
+                $mod = $zbp->modulesbyfilename("AutoChainLink");
                 $mod->Content = getModContent();
                 $mod->Save();
             }

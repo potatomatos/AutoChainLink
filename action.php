@@ -15,6 +15,7 @@ function ajaxService()
             $response['msg'] = '请求不存在';
             echo json_encode($response, JSON_UNESCAPED_UNICODE);
         }
+        die();
     }
 }
 
@@ -58,11 +59,13 @@ function action_save()
     $type = GetVars('type', 'GET');
     $data = GetVars('data', 'POST');
     if ($zbp->HasConfig('AutoChainLink')) {
-        $zbp->Config('AutoChainLink')->{'config_' . $type} = $data;
-        $zbp->Config('AutoChainLink')->updateTime = time();
-        $zbp->SaveConfig('AutoChainLink');
+        if (isset($type) && isset($data)) {
+            $zbp->Config('AutoChainLink')->{'config_' . $type} = $data;
+            $zbp->Config('AutoChainLink')->updateTime = time();
+            $zbp->SaveConfig('AutoChainLink');
+        }
     }
-    $response=array();
+    $response = array();
     $response['code'] = 0;
     $response['msg'] = '保存成功';
     echo json_encode($response, JSON_UNESCAPED_UNICODE);
@@ -80,7 +83,7 @@ function action_save_setting()
         $zbp->Config('AutoChainLink')->updateTime = time();
         $zbp->SaveConfig('AutoChainLink');
     }
-    $response=array();
+    $response = array();
     $response['code'] = 0;
     $response['msg'] = '保存成功';
     echo json_encode($response, JSON_UNESCAPED_UNICODE);
@@ -89,7 +92,7 @@ function action_save_setting()
 function action_get_data()
 {
     global $zbp;
-    $response=array();
+    $response = array();
     $response['code'] = 0;
     $response['msg'] = '成功';
     if ($zbp->HasConfig('AutoChainLink')) {
@@ -98,6 +101,7 @@ function action_get_data()
     echo json_encode($response, JSON_UNESCAPED_UNICODE);
 }
 
-function action_test(){
+function action_test()
+{
     echo getModContent();
 }
